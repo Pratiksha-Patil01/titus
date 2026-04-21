@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="mb-4">Edit Product</h3>
+
+<form method="POST" class="card p-4 shadow">
+
+    <!-- PRODUCT NAME -->
+    <div class="mb-3">
+        <label class="form-label">Product Name</label>
+        <input type="text" name="name" value="{{ product[1] }}" class="form-control" required>
+    </div>
+
+    <!-- SIZE -->
+    <div class="mb-3">
+        <label class="form-label">Size</label>
+        <input type="text" name="size" value="{{ product[2] }}" class="form-control" required>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="text-center">
+        <button class="btn btn-success px-4">Update</button>
+        <a href="/products" class="btn btn-secondary px-4">Cancel</a>
+    </div>
+
+</form>
+
+{% endblock %}

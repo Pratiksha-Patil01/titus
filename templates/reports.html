@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="mb-4">Reports</h3>
+
+<!-- 🔥 FORM -->
+<form method="POST" class="card p-4 shadow mb-4">
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Select Report</label>
+            <select name="type" class="form-select" required>
+                <option value="">Select</option>
+                <option value="daily">Daily</option>
+                <option value="monthly">Monthly</option>
+                <option value="customer">Customer Wise</option>
+                <option value="bill">Bill Wise</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Date</label>
+            <input type="date" name="date" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Month</label>
+            <input type="month" name="month" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Customer</label>
+            <select name="customer" class="form-select">
+                <option value="">Select</option>
+                {% for c in customers %}
+                <option value="{{ c[0] }}">{{ c[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label class="form-label">Bill No</label>
+            <input type="text" name="bill" class="form-control" placeholder="Enter Bill No">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary px-5">Generate Report</button>
+    </div>
+
+</form>
+
+<!-- 🔥 RESULT -->
+{% if data %}
+
+<h4 class="mb-3">Report Result</h4>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Bill No</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Sale Price</th>
+            <th>Total</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for d in data %}
+        <tr>
+            <td>{{ d[0] }}</td>
+            <td>{{ d[1] }}</td>
+            <td>{{ d[2] }}</td>
+            <td>{{ d[3] }}</td>
+            <td>₹{{ d[4] }}</td>
+            <td>₹{{ d[5] }}</td>
+            <td>{{ d[6] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+    <!-- 🔥 GRAND TOTAL -->
+    <tfoot>
+        <tr class="table-secondary fw-bold">
+            <td colspan="5" class="text-end">Grand Total</td>
+            <td>₹ {{ grand_total }}</td>
+            <td></td>
+        </tr>
+    </tfoot>
+
+</table>
+
+{% else %}
+
+<div class="alert alert-warning">
+    No data found
+</div>
+
+{% endif %}
+
+{% endblock %}

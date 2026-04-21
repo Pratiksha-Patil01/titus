@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="mb-4">Customers</h3>
+
+<!-- 🔥 ADD FORM -->
+<form method="POST" class="row g-3 mb-4">
+    <div class="col-md-4">
+        <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="phone" class="form-control" placeholder="Enter Phone">
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary w-100">Add Customer</button>
+    </div>
+</form>
+
+<!-- 🔥 TABLE -->
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for c in customers %}
+        <tr>
+            <td>{{ c[0] }}</td>
+            <td>{{ c[1] }}</td>
+            <td>{{ c[2] }}</td>
+            <td>
+                <!-- EDIT -->
+                <a href="/customer/edit/{{c[0]}}" class="btn btn-warning btn-sm">Edit</a>
+
+                <!-- DELETE -->
+                <a href="/customer/delete/{{c[0]}}" 
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure?')">
+                   Delete
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

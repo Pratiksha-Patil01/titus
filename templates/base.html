@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Titus Packaged Drinking Water</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* 🔥 TITLE HOVER */
+        .brand-title {
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .brand-title:hover {
+            color: #00c6ff;
+            text-shadow: 0 0 10px #00c6ff;
+            letter-spacing: 1px;
+        }
+
+        /* 🔥 NAVBAR LINKS */
+        .nav-item-custom {
+            position: relative;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        /* underline animation */
+        .nav-item-custom::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background: #007bff;
+            transition: 0.3s;
+        }
+
+        .nav-item-custom:hover::after {
+            width: 100%;
+        }
+
+        .nav-item-custom:hover {
+            color: #007bff !important;
+            transform: scale(1.05);
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- 🔥 HEADER (LOGO + TITLE CENTER) -->
+<div class="bg-dark text-white text-center py-3">
+
+    <!-- LOGO -->
+    <img src="{{ url_for('static', filename='logo.jpg') }}"
+         width="70"
+         height="70"
+         class="rounded-circle mb-2">
+
+    <!-- TITLE -->
+    <h2 class="mb-0 brand-title" style="font-size: 34px; font-weight: 600; letter-spacing: 1px;">
+    Titus Packaged Drinking Water
+</h2>
+
+</div>
+
+<!-- 🔥 NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center shadow-sm">
+
+    <div class="navbar-nav">
+
+        <a class="nav-link mx-2 nav-item-custom" href="/">Home</a>
+        <a class="nav-link mx-2 nav-item-custom" href="/customers">Customers</a>
+        <a class="nav-link mx-2 nav-item-custom" href="/vendors">Vendors</a>
+        <a class="nav-link mx-2 nav-item-custom" href="/products">Products</a>
+        <a class="nav-link mx-2 nav-item-custom" href="/purchase">Purchase</a>
+        <a class="nav-link mx-2 nav-item-custom" href="/sales">Sales</a>
+        <a class="nav-link mx-2 nav-item-custom" href="/reports">Reports</a>
+
+    </div>
+
+</nav>
+
+<!-- 🔥 MAIN CONTENT -->
+<div class="container mt-4">
+
+    <h2 class="mb-4 text-center">Admin Dashboard</h2>
+
+    {% block content %}{% endblock %}
+
+</div>
+
+</body>
+</html>
