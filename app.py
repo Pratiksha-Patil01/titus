@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_mysqldb import MySQL
+from Invent import app
+import os
 
 app = Flask(__name__)
 
@@ -297,4 +299,4 @@ def reports():
 
 # ---------------- RUN ----------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=8080)
